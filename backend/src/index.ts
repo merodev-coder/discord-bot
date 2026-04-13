@@ -21,7 +21,7 @@ app.use(helmet({
 }));
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL || 'https://ultimatebot.netlify.app',
   credentials: true,
 }));
 
@@ -52,7 +52,7 @@ app.get('/api/health', (_req, res) => {
 connectDB().then(() => {
   app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
-    console.log(`Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:5173'}`);
+    console.log(`Frontend URL: ${process.env.FRONTEND_URL || 'https://ultimatebot.netlify.app'}`);
   });
   startBot();
 });

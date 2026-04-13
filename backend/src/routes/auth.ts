@@ -7,8 +7,8 @@ const router = Router();
 const DISCORD_API = 'https://discord.com/api/v10';
 const CLIENT_ID = process.env.DISCORD_CLIENT_ID!;
 const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET!;
-const REDIRECT_URI = `http://localhost:${process.env.PORT || 3001}/api/auth/discord/callback`;
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+const REDIRECT_URI = process.env.REDIRECT_URI || 'https://discord-bot-bt70.onrender.com/api/auth/discord/callback';
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://ultimatebot.netlify.app';
 
 router.get('/discord', (_req: Request, res: Response) => {
   const params = new URLSearchParams({
@@ -75,10 +75,12 @@ router.get('/discord/callback', async (req: Request, res: Response) => {
       { expiresIn: '7d' }
     );
 
+    const isProduction = process.env.NODE_ENV === 'production';
+
     res.cookie('token', jwtToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: isProduction,
+      sameSite: isProduction ? 'none' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
