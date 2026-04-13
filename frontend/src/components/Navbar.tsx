@@ -18,7 +18,10 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    fetch('/api/auth/me', { credentials: 'include' })
+    const token = localStorage.getItem('token');
+    const headers: Record<string, string> = {};
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    fetch('/api/auth/me', { credentials: 'include', headers })
       .then(r => { if (r.ok) setLoggedIn(true); })
       .catch(() => {});
   }, []);

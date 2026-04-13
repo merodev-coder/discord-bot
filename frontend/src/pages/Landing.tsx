@@ -58,7 +58,10 @@ const Landing = () => {
 
   useEffect(() => {
     fetch('/api/stats').then(r => { if (r.ok) return r.json(); }).then(d => { if (d) setLiveStats(d); }).catch(() => {});
-    fetch('/api/auth/me', { credentials: 'include' }).then(r => { if (r.ok) setLoggedIn(true); }).catch(() => {});
+    const token = localStorage.getItem('token');
+    const authHeaders: Record<string, string> = {};
+    if (token) authHeaders['Authorization'] = `Bearer ${token}`;
+    fetch('/api/auth/me', { credentials: 'include', headers: authHeaders }).then(r => { if (r.ok) setLoggedIn(true); }).catch(() => {});
     if (orbRef.current) {
       gsap.to(orbRef.current, { y: -40, x: 15, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
     }

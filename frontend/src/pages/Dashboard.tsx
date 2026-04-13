@@ -79,7 +79,16 @@ const sidebarItems = [
 
 const DISCORD_INVITE = 'https://discord.com/oauth2/authorize?client_id=1492134945748029621&permissions=8&scope=bot%20applications.commands';
 
-const apiFetch = (url: string) => fetch(url, { credentials: 'include' }).then(r => { if (!r.ok) throw new Error(); return r.json(); });
+const getToken = () => localStorage.getItem('token');
+
+const apiFetch = (url: string, options: RequestInit = {}) => {
+  const token = getToken();
+  return fetch(url, {
+    ...options,
+    credentials: 'include',
+    headers: { ...options.headers, ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+  }).then(r => { if (!r.ok) throw new Error(); return r.json(); });
+};
 
 const DashboardOverview = ({ guildId, guildSettings }: { guildId: string; guildSettings: GuildSettings | null }) => {
   const [stats, setStats] = useState<GuildStats | null>(null);
@@ -573,7 +582,20 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    fetch('/api/auth/me', { credentials: 'include' })
+    // Grab token from URL (after OAuth redirect) and store it
+    const params = new URLSearchParams(window.location.search);
+    const urlToken = params.get('token');
+    if (urlToken) {
+      localStorage.setItem('token', urlToken);
+      // Clean URL
+      window.history.replaceState({}, '', '/dashboard');
+    }
+
+    const token = getToken();
+    const headers: Record<string, string> = {};
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
+    fetch('/api/auth/me', { credentials: 'include', headers })
       .then(r => { if (!r.ok) throw new Error(); return r.json(); })
       .then(data => {
         setUser(data.user);
@@ -596,7 +618,8 @@ const Dashboard = () => {
   };
 
   const handleLogout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+    localStorage.removeItem('token');
+    await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' }).catch(() => {});
     navigate('/login');
   };
 

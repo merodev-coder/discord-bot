@@ -11,7 +11,10 @@ const Login = () => {
 
   useEffect(() => {
     // If already logged in, redirect to dashboard
-    fetch('/api/auth/me', { credentials: 'include' })
+    const token = localStorage.getItem('token');
+    const headers: Record<string, string> = {};
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    fetch('/api/auth/me', { credentials: 'include', headers })
       .then(r => { if (r.ok) return r.json(); throw new Error(); })
       .then(() => navigate('/dashboard'))
       .catch(() => {});
