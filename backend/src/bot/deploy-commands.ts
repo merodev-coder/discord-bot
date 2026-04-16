@@ -49,6 +49,19 @@ const commands = [
   new SlashCommandBuilder().setName('poll').setDescription('Create a poll')
     .addStringOption(o => o.setName('question').setDescription('The poll question').setRequired(true))
     .addStringOption(o => o.setName('options').setDescription('Options separated by | (e.g. Yes | No | Maybe)').setRequired(true)),
+
+  new SlashCommandBuilder().setName('ticket').setDescription('Open a support ticket'),
+
+  new SlashCommandBuilder().setName('profile').setDescription('View your or another user\'s social profile')
+    .addUserOption(o => o.setName('user').setDescription('The user to view')),
+
+  new SlashCommandBuilder().setName('reminder').setDescription('Set a reminder for a specific duration')
+    .addStringOption(o => o.setName('duration').setDescription('Duration (e.g. 30m, 2h, 1d)').setRequired(true))
+    .addStringOption(o => o.setName('message').setDescription('What to remind you about').setRequired(true)),
+
+  new SlashCommandBuilder().setName('translate').setDescription('Translate text into another language')
+    .addStringOption(o => o.setName('text').setDescription('The text to translate').setRequired(true))
+    .addStringOption(o => o.setName('language').setDescription('Target language code (e.g. es, fr, de, ja, ko, zh, ar)').setRequired(true)),
 ].map(cmd => cmd.toJSON());
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN!);

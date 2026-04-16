@@ -16,6 +16,10 @@ import { handleMeme } from './commands/meme.js';
 import { handlePing } from './commands/ping.js';
 import { handleAvatar } from './commands/avatar.js';
 import { handlePoll } from './commands/poll.js';
+import { handleTicket } from './commands/ticket.js';
+import { handleProfile } from './commands/profile.js';
+import { handleReminder } from './commands/reminder.js';
+import { handleTranslate } from './commands/translate.js';
 
 dotenv.config();
 
@@ -45,7 +49,11 @@ export const BOT_COMMANDS = [
   { name: '/meme', description: 'Fetch a random meme to share with the server.', usage: '/meme', category: 'Fun' },
   { name: '/ping', description: 'Check the bot and Discord API latency.', usage: '/ping', category: 'General' },
   { name: '/avatar', description: 'View a user\'s avatar in full resolution.', usage: '/avatar [@user]', category: 'General' },
-  { name: '/poll', description: 'Create a poll with up to 5 options.', usage: '/poll [question] [opt1|opt2|...]', category: 'Fun' },
+  { name: '/poll', description: 'Create an advanced poll with up to 5 options using button voting.', usage: '/poll [question] [opt1|opt2|...]', category: 'Fun' },
+  { name: '/ticket', description: 'Spawns an embed with a "Create Ticket" button for support.', usage: '/ticket', category: 'Utility' },
+  { name: '/profile', description: 'Generates a fancy embed with XP, roles, and join date with a progress bar.', usage: '/profile [@user]', category: 'Leveling' },
+  { name: '/reminder', description: 'Sets a reminder for a specific duration and sends a DM when time is up.', usage: '/reminder [duration] [message]', category: 'Utility' },
+  { name: '/translate', description: 'Translates text into a chosen language.', usage: '/translate [text] [language]', category: 'Utility' },
 ];
 
 client.once(Events.ClientReady, (readyClient) => {
@@ -171,6 +179,10 @@ client.on(Events.InteractionCreate, async (interaction) => {
       case 'ping': await handlePing(interaction); break;
       case 'avatar': await handleAvatar(interaction); break;
       case 'poll': await handlePoll(interaction); break;
+      case 'ticket': await handleTicket(interaction); break;
+      case 'profile': await handleProfile(interaction); break;
+      case 'reminder': await handleReminder(interaction); break;
+      case 'translate': await handleTranslate(interaction); break;
       default:
         await interaction.reply({ content: 'Unknown command.', ephemeral: true });
     }

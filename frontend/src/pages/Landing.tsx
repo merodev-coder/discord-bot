@@ -53,7 +53,7 @@ const Landing = () => {
   const orbRef = useRef<HTMLDivElement>(null);
   const orb2Ref = useRef<HTMLDivElement>(null);
   const orb3Ref = useRef<HTMLDivElement>(null);
-  const [liveStats, setLiveStats] = useState({ guilds: 0, users: 0, commands: 15, ping: 0 });
+  const [liveStats, setLiveStats] = useState({ guilds: 0, users: 0, commands: 20, ping: 0 });
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {

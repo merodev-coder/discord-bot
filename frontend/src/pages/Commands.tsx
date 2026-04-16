@@ -37,7 +37,11 @@ const Commands = () => {
           { name: '/meme', description: 'Fetch a random meme to share with the server.', usage: '/meme', category: 'Fun' },
           { name: '/ping', description: 'Check the bot and Discord API latency.', usage: '/ping', category: 'General' },
           { name: '/avatar', description: 'View a user\'s avatar in full resolution.', usage: '/avatar [@user]', category: 'General' },
-          { name: '/poll', description: 'Create a poll with up to 5 options.', usage: '/poll [question] [opt1|opt2|...]', category: 'Fun' },
+          { name: '/poll', description: 'Create an advanced poll with up to 5 options using button voting.', usage: '/poll [question] [opt1|opt2|...]', category: 'Fun' },
+          { name: '/ticket', description: 'Spawns an embed with a "Create Ticket" button for support.', usage: '/ticket', category: 'Utility' },
+          { name: '/profile', description: 'Generates a fancy embed with XP, roles, and join date with a progress bar.', usage: '/profile [@user]', category: 'Leveling' },
+          { name: '/reminder', description: 'Sets a reminder for a specific duration and sends a DM when time is up.', usage: '/reminder [duration] [message]', category: 'Utility' },
+          { name: '/translate', description: 'Translates text into a chosen language.', usage: '/translate [text] [language]', category: 'Utility' },
         ]);
         setLoading(false);
       });
@@ -179,7 +183,7 @@ const Commands = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-24">
             {[
               { icon: Shield, title: 'Auto-Moderation', desc: 'Configure intelligent filters that learn from your community\'s unique behavior patterns.' },
-              { icon: Zap, title: '15 Slash Commands', desc: 'Moderation, leveling, fun, and utility — everything you need in one bot.' },
+              { icon: Zap, title: '20 Slash Commands', desc: 'Moderation, leveling, fun, and utility — everything you need in one bot.' },
               { icon: BarChart3, title: 'Growth Analytics', desc: 'Deep-dive into your server\'s engagement metrics with automated weekly visual reports.' },
             ].map((card, i) => (
               <motion.div

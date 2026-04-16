@@ -173,30 +173,30 @@
    In dark mode text-main is light (#E8E8FF), so /30 = subtle.
    In light mode text-main is dark (#1A1D2E), so /30 = nearly invisible.
    We bump the low-opacity ranges so they're readable. */
-.light .text-text-main\/15 { color: rgba(26,29,46,0.35) !important; }
-.light .text-text-main\/18 { color: rgba(26,29,46,0.38) !important; }
-.light .text-text-main\/20 { color: rgba(26,29,46,0.4) !important; }
-.light .text-text-main\/25 { color: rgba(26,29,46,0.45) !important; }
-.light .text-text-main\/30 { color: rgba(26,29,46,0.5) !important; }
-.light .text-text-main\/35 { color: rgba(26,29,46,0.55) !important; }
-.light .text-text-main\/40 { color: rgba(26,29,46,0.6) !important; }
-.light .text-text-main\/45 { color: rgba(26,29,46,0.65) !important; }
-.light .text-text-main\/50 { color: rgba(26,29,46,0.7) !important; }
-.light .text-text-main\/55 { color: rgba(26,29,46,0.75) !important; }
-.light .text-text-main\/60 { color: rgba(26,29,46,0.8) !important; }
-.light .text-text-main\/70 { color: rgba(26,29,46,0.85) !important; }
+.light .text-text-main\/15 { color: rgba(26,29,46,0.5) !important; }
+.light .text-text-main\/18 { color: rgba(26,29,46,0.55) !important; }
+.light .text-text-main\/20 { color: rgba(26,29,46,0.58) !important; }
+.light .text-text-main\/25 { color: rgba(26,29,46,0.62) !important; }
+.light .text-text-main\/30 { color: rgba(26,29,46,0.68) !important; }
+.light .text-text-main\/35 { color: rgba(26,29,46,0.72) !important; }
+.light .text-text-main\/40 { color: rgba(26,29,46,0.78) !important; }
+.light .text-text-main\/45 { color: rgba(26,29,46,0.82) !important; }
+.light .text-text-main\/50 { color: rgba(26,29,46,0.85) !important; }
+.light .text-text-main\/55 { color: rgba(26,29,46,0.88) !important; }
+.light .text-text-main\/60 { color: rgba(26,29,46,0.92) !important; }
+.light .text-text-main\/70 { color: rgba(26,29,46,0.95) !important; }
 
 /* Hover text opacity boosts */
-.light .hover\:text-text-main\/50:hover { color: rgba(26,29,46,0.7) !important; }
-.light .hover\:text-text-main\/70:hover { color: rgba(26,29,46,0.85) !important; }
-.light .hover\:text-text-main\/75:hover { color: rgba(26,29,46,0.85) !important; }
-.light .hover\:text-text-main\/80:hover { color: rgba(26,29,46,0.9) !important; }
+.light .hover\:text-text-main\/50:hover { color: rgba(26,29,46,0.85) !important; }
+.light .hover\:text-text-main\/70:hover { color: rgba(26,29,46,0.95) !important; }
+.light .hover\:text-text-main\/75:hover { color: rgba(26,29,46,0.95) !important; }
+.light .hover\:text-text-main\/80:hover { color: rgba(26,29,46,0.97) !important; }
 .light .hover\:text-text-main:hover { color: rgba(26,29,46,1) !important; }
 
 /* Group-hover text opacity */
 .light .group-hover\:text-text-main\/45 { color: inherit; }
-.light .group:hover .group-hover\:text-text-main\/45 { color: rgba(26,29,46,0.65) !important; }
-.light .group:hover .group-hover\:text-text-main\/50 { color: rgba(26,29,46,0.7) !important; }
+.light .group:hover .group-hover\:text-text-main\/45 { color: rgba(26,29,46,0.82) !important; }
+.light .group:hover .group-hover\:text-text-main\/50 { color: rgba(26,29,46,0.85) !important; }
 
 /* Primary color opacity boosts for light mode */
 .light .text-primary\/50 { color: rgba(79,88,204,0.7) !important; }

@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
+import { ChatInputCommandInteraction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
 
 const EMOJIS = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣'];
 
@@ -17,12 +17,18 @@ export async function handlePoll(interaction: ChatInputCommandInteraction) {
     .setColor(0x9FA7FF)
     .setTitle(`📊 ${question}`)
     .setDescription(description)
-    .setFooter({ text: `Poll by ${interaction.user.username}` })
+    .setFooter({ text: `Poll by ${interaction.user.username} • Click a button to vote` })
     .setTimestamp();
 
-  const msg = await interaction.reply({ embeds: [embed], fetchReply: true });
+  const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+    ...options.map((opt, i) =>
+      new ButtonBuilder()
+        .setCustomId(`poll_vote_${i}`)
+        .setLabel(opt.slice(0, 80))
+        .setStyle(ButtonStyle.Secondary)
+        .setEmoji(EMOJIS[i])
+    )
+  );
 
-  for (let i = 0; i < options.length; i++) {
-    await msg.react(EMOJIS[i]);
-  }
+  await interaction.reply({ embeds: [embed], components: [row] });
 }
